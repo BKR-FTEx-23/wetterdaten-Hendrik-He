@@ -16,6 +16,7 @@ namespace WetterdatenHeHe
         {
             InitializeComponent();
         }
+        //done
         Wetterdaten datensammlung1 = new Wetterdaten(1);
 
         private void btnAuswerten_Click(object sender, EventArgs e)
