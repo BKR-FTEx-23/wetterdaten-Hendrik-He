@@ -16,5 +16,25 @@ namespace WetterdatenHeHe
         {
             InitializeComponent();
         }
+
+        private void btnAuswerten_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSpeichernEingabe_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSpeichernDatei_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnEinlesenDatei_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -114,6 +114,7 @@
             this.btnEinlesenDatei.TabIndex = 0;
             this.btnEinlesenDatei.Text = "Einlesen Datei";
             this.btnEinlesenDatei.UseVisualStyleBackColor = true;
+            this.btnEinlesenDatei.Click += new System.EventHandler(this.btnEinlesenDatei_Click);
             // 
             // btnSpeichernDatei
             // 
@@ -123,6 +124,7 @@
             this.btnSpeichernDatei.TabIndex = 1;
             this.btnSpeichernDatei.Text = "Speicheren Datei";
             this.btnSpeichernDatei.UseVisualStyleBackColor = true;
+            this.btnSpeichernDatei.Click += new System.EventHandler(this.btnSpeichernDatei_Click);
             // 
             // btnAuswerten
             // 
@@ -132,6 +134,7 @@
             this.btnAuswerten.TabIndex = 2;
             this.btnAuswerten.Text = "Auswerten";
             this.btnAuswerten.UseVisualStyleBackColor = true;
+            this.btnAuswerten.Click += new System.EventHandler(this.btnAuswerten_Click);
             // 
             // btnSpeichernEingabe
             // 
@@ -141,6 +144,7 @@
             this.btnSpeichernEingabe.TabIndex = 4;
             this.btnSpeichernEingabe.Text = "Speichern";
             this.btnSpeichernEingabe.UseVisualStyleBackColor = true;
+            this.btnSpeichernEingabe.Click += new System.EventHandler(this.btnSpeichernEingabe_Click);
             // 
             // txtLuftfEingabe
             // 
