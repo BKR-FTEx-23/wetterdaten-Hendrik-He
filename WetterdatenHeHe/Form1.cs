@@ -16,36 +16,50 @@ namespace WetterdatenHeHe
         {
             InitializeComponent();
         }
-        Wetterdaten liste1 = new Wetterdaten(1);
+        Wetterdaten datensammlung1 = new Wetterdaten(1);
 
         private void btnAuswerten_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                lblDurchschnittTemp.Text = $"Durchschnitttemperatur: {datensammlung1.BerechneDurchschnittTemp():#.##}";
+                lblDurchschnittLuft.Text = $"Durchschnittsluftfeuchtigkeit: {datensammlung1.BerechneDurchschnittLuft():#.##}";
+                lblMinTemp.Text = $"Minimaltemperatur: {datensammlung1.BerechneMinTemp()}";
+                lblMaxTemp.Text = $"Maximaltemperatur: {datensammlung1.BerechneMaxTemp()}";
+                lbl0bis10.Text = $"0-10°C Tage: {datensammlung1.WerteGruppieren(10, 0)}";
+                lbl10bis20.Text = $"10-20°C Tage: {datensammlung1.WerteGruppieren(20, 10)}";
+                lbl20bis30.Text = $"20-30°C Tage: {datensammlung1.WerteGruppieren(30, 20)}";
+                lblTageLuft.Text = $"Tage mit Luftfeuchtigkeit >79%: {datensammlung1.LuftHoeherX(79)}";
+            }
+            catch 
+            {
+                MessageBox.Show("Keine Werte in der Liste");
+            }
         }
 
         private void btnSpeichernEingabe_Click(object sender, EventArgs e)
         {
             Wetter data = Eingabe();
-            liste1.AddWetterdaten(data);
-            txtAusgabe.Text = liste1.ToString();
+            datensammlung1.AddWetterdaten(data);
+            txtAusgabe.Text = datensammlung1.ToString();
         }
 
         private void btnSpeichernDatei_Click(object sender, EventArgs e)
         {
             saveFileDialog1.ShowDialog();
             string dateiname = saveFileDialog1.FileName;
-            liste1.DateiSpeichern(dateiname);
+            datensammlung1.DateiSpeichern(dateiname);
             MessageBox.Show("Datei abgespeichert");
-            txtAusgabe.Text = liste1.ToString();
+            txtAusgabe.Text = datensammlung1.ToString();
         }
 
         private void btnEinlesenDatei_Click(object sender, EventArgs e)
         {
             openFileDialog1.ShowDialog();
             string dateiname = openFileDialog1.FileName;
-            liste1.DateiEinlesen(dateiname);
+            datensammlung1.DateiEinlesen(dateiname);
             MessageBox.Show("Datei eingelesen");
-            txtAusgabe.Text = liste1.ToString() ;
+            txtAusgabe.Text = datensammlung1.ToString() ;
         }
 
         public Wetter Eingabe()

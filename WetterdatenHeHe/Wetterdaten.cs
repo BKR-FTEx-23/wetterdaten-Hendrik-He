@@ -13,7 +13,7 @@ namespace WetterdatenHeHe
         public List<Wetter> ListeWetterdaten;
         public int ID { get; set; }
 
-        
+
         public Wetterdaten(int id)
         {
             this.ID = id;
@@ -51,20 +51,92 @@ namespace WetterdatenHeHe
         {
             using (StreamWriter datei = new StreamWriter(dateiname))
             {
-                string zeile = ListeWetterdaten.ToString();
-                datei.WriteLine(zeile);
+                datei.WriteLine("Datum;Temperatur;Luftfeuchtigkeit");
+                foreach (var zeile in ListeWetterdaten)
+                {
+                    datei.WriteLine(zeile);
+                }
             }
         }
-        public void Auswertung(List<Wetterdaten> liste)
+        /*
+         * Ab hier fangen die Berechnungen an:
+        */
+        public double BerechneDurchschnittTemp()
         {
-            List<Wetter> tempListe = new List<Wetter>();
-            foreach(var daten in liste)
-            {
-                tempListe.Add(daten);
-            }
-            WetterAuswertung auswertung = new WetterAuswertung();
-            auswertung.BerechneDurchschnittTemp();
+            //einfacher: avgTemp = liste.Average(x => x.Temperatur);
+            double avgTemp;
+            double summeTemperatur = 0;
+            int anzahl = ListeWetterdaten.Count;
 
+            foreach (var daten in ListeWetterdaten)
+            {
+                summeTemperatur += daten.Temperatur;
+            }
+            return avgTemp = summeTemperatur / anzahl;
+        }
+        public double BerechneDurchschnittLuft()
+        {
+            //einfacher: avgLuft = liste.Average(x => x.Luftfeuchtigkeit);
+            double avgH;
+            double summeLuftfeuchtigkeit = 0;
+            int anzahl = ListeWetterdaten.Count;
+
+            foreach (var daten in ListeWetterdaten)
+            {
+                summeLuftfeuchtigkeit += daten.Luftfeuchtigkeit;
+            }
+            return avgH = summeLuftfeuchtigkeit / anzahl;
+        }
+        public double BerechneMinTemp()
+        {
+            //einfacher: var minTemp = liste.Min(x => x.Temperatur);
+            double minTemp = ListeWetterdaten[0].Temperatur;
+
+            foreach (var daten in ListeWetterdaten)
+            {
+                if (daten.Temperatur < minTemp)
+                {
+                    minTemp = daten.Temperatur;
+                }
+            }
+            return minTemp;
+        }
+        public double BerechneMaxTemp()
+        {
+            double maxTemp = ListeWetterdaten[0].Temperatur;
+
+            foreach (var daten in ListeWetterdaten)
+            {
+                if (daten.Luftfeuchtigkeit > maxTemp)
+                {
+                    maxTemp = daten.Temperatur;
+                }
+            }
+            return maxTemp;
+        }
+        public int WerteGruppieren(int obereGrenze, int untereGrenze)
+        {
+            int anzahl = 0;
+            foreach (var daten in ListeWetterdaten)
+            {
+                if (daten.Temperatur < obereGrenze && daten.Temperatur > untereGrenze)
+                {
+                    anzahl++;
+                }
+            }
+            return anzahl;
+        }
+        public int LuftHoeherX(int x)
+        {
+            int anzahl = 0;
+            foreach (var daten in ListeWetterdaten)
+            {
+                if (daten.Luftfeuchtigkeit > x)
+                {
+                    anzahl++;
+                }
+            }
+            return anzahl;
         }
         public override string ToString()
         {
