@@ -75,11 +75,17 @@ namespace WetterdatenHeHe
                 data = new Wetter(datum, temperatur, luftfeuchtigkeit);
                 return data;
             }
-            catch
+            catch (ArgumentOutOfRangeException ex)
             {
-                MessageBox.Show("Daten eingegeben");
+                MessageBox.Show(ex.Message);
                 return null;
             }
+            catch
+            {
+                MessageBox.Show("Syntaxfehler");
+                return null;
+            }
+            
         }
 
         private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
