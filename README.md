@@ -18,7 +18,7 @@ z.B. Temperaturbereich 0-10°C 5 Tage, 11-20°C 20 Tage, ...
 Speichern der veränderten Daten in einer neuen Datei.
 9. Ergänzen Sie die Klasse „Wetterdaten“: Die Temperatur kann nur Werte zwischen
 -50°C und +50°C annehmen.
-10.Fehlerhafte Eingaben der Daten sollen abgefangen werden.
+10. Fehlerhafte Eingaben der Daten sollen abgefangen werden.
 ## GUI
 ![Bild vom GUI](imageGUI.png)
 ## Git-Graph
