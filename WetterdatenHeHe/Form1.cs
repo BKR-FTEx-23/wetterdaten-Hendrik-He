@@ -40,7 +40,7 @@ namespace WetterdatenHeHe
 
         private void btnSpeichernEingabe_Click(object sender, EventArgs e)
         {
-            Wetter data = Eingabe();
+            Wetter data = Eingabe();//"data{datum,temperatur,luftfeuchtigkeit}" "data={1.1.2011,20.34,30.22}"
             datensammlung1.AddWetterdaten(data);
             txtAusgabe.Text = datensammlung1.ToString();
         }
@@ -49,7 +49,7 @@ namespace WetterdatenHeHe
         {
             saveFileDialog1.ShowDialog();
             string dateiname = saveFileDialog1.FileName;
-            datensammlung1.DateiSpeichern(dateiname);
+            datensammlung1.DateiSpeichern(dateiname);//.....\downloads\wetter.csv
             MessageBox.Show("Datei abgespeichert");
             txtAusgabe.Text = datensammlung1.ToString();
         }
@@ -58,7 +58,7 @@ namespace WetterdatenHeHe
         {
             openFileDialog1.ShowDialog();
             string dateiname = openFileDialog1.FileName;
-            datensammlung1.DateiEinlesen(dateiname);
+            datensammlung1.DateiEinlesen(dateiname);//.....\downloads\wetter.csv
             MessageBox.Show("Datei eingelesen");
             txtAusgabe.Text = datensammlung1.ToString() ;
         }

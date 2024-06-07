@@ -24,7 +24,11 @@ namespace WetterdatenHeHe
         {
             ListeWetterdaten.Add(datum);
         }
-        public void DateiEinlesen(string dateiname)
+        /// <summary>
+        /// Datei einlesen und in die Liste abspeichern
+        /// </summary>
+        /// <param name="dateiname"></param>
+        public void DateiEinlesen(string dateiname) 
         {
             StreamReader datei = new StreamReader(dateiname);
 
@@ -34,12 +38,12 @@ namespace WetterdatenHeHe
                 datei.ReadLine();
                 while (!datei.EndOfStream)
                 {
-                    var zeile = datei.ReadLine();
+                    var zeile = datei.ReadLine();//2023-10-08 10:05:48 ; 27,54 ; 59,04
                     var werte = zeile.Split(';');
 
-                    DateTime datum = DateTime.Parse(werte[0]);
-                    double temperatur = double.Parse(werte[1].Replace(",", "."));
-                    double luftfeuchtigkeit = double.Parse(werte[2].Replace(",", "."));
+                    DateTime datum = DateTime.Parse(werte[0]);//2023-10-08 10:05:48
+                    double temperatur = double.Parse(werte[1].Replace(",", ".")); //27.54
+                    double luftfeuchtigkeit = double.Parse(werte[2].Replace(",", "."));//59.04
 
                     Wetter data = new Wetter(datum, temperatur, luftfeuchtigkeit);
                     ListeWetterdaten.Add(data);
@@ -54,7 +58,7 @@ namespace WetterdatenHeHe
                 datei.WriteLine("Datum;Temperatur;Luftfeuchtigkeit");
                 foreach (var zeile in ListeWetterdaten)
                 {
-                    datei.WriteLine(zeile);
+                    datei.WriteLine(zeile); //2023-10-08 10:05:48 ; 27,54 ; 59,04
                 }
             }
         }
@@ -144,6 +148,15 @@ namespace WetterdatenHeHe
             foreach (var data in ListeWetterdaten)
             {
                 liste += $"{data}" + System.Environment.NewLine;
+            }
+            return liste;
+        }
+        public string AusgabeDateizeile()
+        {
+            string liste = "Luftfeuchtigkeit | Temperatur | Datum" + System.Environment.NewLine;
+            foreach (var data in ListeWetterdaten)
+            {
+                liste += $"{data.AusgebenDateizeile()}" + System.Environment.NewLine;
             }
             return liste;
         }

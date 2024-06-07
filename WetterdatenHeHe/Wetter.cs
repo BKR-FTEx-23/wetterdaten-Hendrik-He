@@ -22,7 +22,7 @@ namespace WetterdatenHeHe
                 temperatur = value;
             }
         }
-        public double Luftfeuchtigkeit { get; set; }
+        public double Luftfeuchtigkeit { get;private set; }
 
         public Wetter(DateTime datum, double temperatur, double luftfeuchtigkeit)
         {
@@ -37,6 +37,13 @@ namespace WetterdatenHeHe
             string temperatur = Temperatur.ToString();
             string luftfeuchtigkeit = Luftfeuchtigkeit.ToString();
             return $"{datum};{temperatur};{luftfeuchtigkeit}";
+        }
+        public string AusgebenDateizeile()
+        {
+            string datum = Datum.ToString("yyyy-MM-dd HH:mm:ss");
+            string temperatur = Temperatur.ToString();
+            string luftfeuchtigkeit = Luftfeuchtigkeit.ToString();
+            return $"{luftfeuchtigkeit};{temperatur};{datum}";
         }
     }
 }
